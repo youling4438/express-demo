@@ -33,7 +33,7 @@ const insertDocument = (db, shici, cb) => {
 //     });
 // });
 
-const insertDocumentForShici = shici => {
+const insertDocumentForShici = (shici, cb) => {
     client.connect(err => {
         if (err) {
             console.log("err", err);
@@ -42,6 +42,7 @@ const insertDocumentForShici = shici => {
         const db = client.db(dbName);
         insertDocument(db, shici, () => {
             client.close();
+            cb();
         });
     });
 };

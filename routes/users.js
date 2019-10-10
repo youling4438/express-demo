@@ -9,7 +9,9 @@ router.get("/", function(req, res, next) {
 
 router.get("/shici", function(req, res, next) {
     // res.send('respond with a resource');
-    insertShici({ name: "Roy", age: 27 });
+    insertShici({ name: "Roy", age: 27 }, () => {
+        res.send("insert successed!");
+    });
 });
 
 module.exports = router;
