@@ -15,23 +15,10 @@ const insertDocument = (db, shici, cb) => {
         if (err) {
             console.log("err", err);
         }
-        console.log("shici", shici);
-        console.log("result", result);
         console.log("result.insertedCount: ", result.insertedCount);
         cb(result);
     });
 };
-
-// client.connect(err => {
-//     if (err) {
-//         console.log("err", err);
-//         return;
-//     }
-//     const db = client.db(dbName);
-//     insertDocument(db, () => {
-//         client.close();
-//     });
-// });
 
 const insertDocumentForShici = (shici, cb) => {
     client.connect(err => {
