@@ -28,12 +28,31 @@ const insertDocumentForShici = (shici, cb) => {
         }
         const db = client.db(dbName);
         insertDocument(db, shici, () => {
-            client.close();
             cb();
+            client.close();
+        });
+    });
+};
+
+const findDocumentsWithFilter = (filter, cb) => {
+    client.connect(err => {
+        if (err) {
+            console.log("err", err);
+            return;
+        }
+        const db = client.db(dbName);
+        const collection = db.collection("jrsc");
+        collection.find(filter).toArray((err, result) => {
+            if (err) {
+                console.log("err", err);
+            }
+            console.log("result.length: ", result.length);
+            cb(result);
         });
     });
 };
 
 module.exports = {
-    insertDocumentForShici
+    insertDocumentForShici,
+    findDocumentsWithFilter
 };
