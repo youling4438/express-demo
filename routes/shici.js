@@ -16,7 +16,6 @@ router.get("/add", function(req, res, next) {
     console.log("req.query.body", req.query.body);
     const shici = JSON.parse(req.query.body);
     console.log("shici hahahh ", shici);
-    // insertShici({ name: "Roy", age: 27 }, () => {
     insertShici(shici, () => {
         res.send("insert successed!");
     });
