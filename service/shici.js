@@ -52,7 +52,26 @@ const findDocumentsWithFilter = (filter, cb) => {
     });
 };
 
+const deleteDocumentsWithFilter = (delItem, cb) => {
+    client.connect(err => {
+        if (err) {
+            console.log("err", err);
+            return;
+        }
+        const db = client.db(dbName);
+        const collection = db.collection("jrsc");
+        collection.deleteOne(delItem, (err, result) => {
+            if (err) {
+                console.log("err", err);
+            }
+            console.log("result: ", result);
+            cb(result);
+        });
+    });
+};
+
 module.exports = {
-    insertDocumentForShici,
-    findDocumentsWithFilter
+    insertDocument: insertDocumentForShici,
+    findDocuments: findDocumentsWithFilter,
+    deleteDocuments: deleteDocumentsWithFilter
 };
