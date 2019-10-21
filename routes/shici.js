@@ -18,7 +18,18 @@ router.get("/add", function(req, res, next) {
     const shici = JSON.parse(req.query.body);
     console.log("shici hahahh ", shici);
     insertShici(shici, () => {
-        res.send("insert successed!");
+        res.send("get insert successed!");
+    });
+});
+
+router.post("/add", function(req, res, next) {
+    // res.send('respond with a resource');
+    console.log("req", req);
+    console.log("req.body", req.body);
+    const shici = req.body;
+    console.log("shici hahahh ", shici);
+    insertShici(shici, () => {
+        res.send("post insert successed!");
     });
 });
 
